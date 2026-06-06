@@ -34,7 +34,7 @@ app.get("/api/stats", async (req, res) => {
             totalUsers: await User.countDocuments(),
             totalReports: await Report.countDocuments(),
             totalAttendance: await Attendance.countDocuments(),
-            totalFeedback: await Feedback.countDocuments()
+            feedback: await Feedback.countDocuments()
         });
 
     } catch (error) {
