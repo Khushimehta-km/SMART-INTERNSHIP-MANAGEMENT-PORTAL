@@ -23,6 +23,21 @@ app.get("/", (req, res) => {
     res.send("Mindlabz Internship Management Portal Running");
 });
 
+app.get("/api/stats", async (req, res) => {
+    try {
+        res.json({
+            users: 0,
+            reports: 0,
+            attendance: 0,
+            feedback: 0
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        });
+    }
+});
+
 // API routes
 app.use("/api/users", userRoutes);
 app.use("/api/reports", reportRoutes);
