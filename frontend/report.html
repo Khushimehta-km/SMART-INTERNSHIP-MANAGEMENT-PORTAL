@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Performance Report</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Internship Performance Report</h1>
+
+    <div class="card">
+        <h2>Overall Statistics</h2>
+
+        <p>Total Interns: <span id="users"></span></p>
+        <p>Total Work Reports: <span id="reports"></span></p>
+        <p>Total Attendance Records: <span id="attendance"></span></p>
+        <p>Total Feedbacks: <span id="feedback"></span></p>
+    </div>
+
+
+    <button onclick="downloadReport()">
+        Export Report
+    </button>
+
+    <br><br>
+
+    <button onclick="window.location.href='dashboard.html'">
+        Back to Dashboard
+    </button>
+
+</div>
+
+
+<script>
+
+fetch("http://localhost:5000/api/stats")
+.then(res => res.json())
+.then(data => {
+
+    document.getElementById("users").innerText =
+    data.totalUsers;
+
+    document.getElementById("reports").innerText =
+    data.totalReports;
+
+    document.getElementById("attendance").innerText =
+    data.totalAttendance;
+
+    document.getElementById("feedback").innerText =
+    data.totalFeedbacks;
+
+});
+
+
+function downloadReport(){
+
+    let text =
+`
+SMART INTERNSHIP MANAGEMENT PORTAL
+
+Performance Report
+
+Total Users: ${document.getElementById("users").innerText}
+
+Total Reports Submitted: ${document.getElementById("reports").innerText}
+
+Attendance Records: ${document.getElementById("attendance").innerText}
+
+Feedback Records: ${document.getElementById("feedback").innerText}
+
+
+Generated Successfully.
+`;
+
+    let file = new Blob([text],
+    {type:"text/plain"});
+
+
+    let a=document.createElement("a");
+
+    a.href=URL.createObjectURL(file);
+
+    a.download="Internship_Report.txt";
+
+    a.click();
+
+}
+
+</script>
+
+
+</body>
+</html>
