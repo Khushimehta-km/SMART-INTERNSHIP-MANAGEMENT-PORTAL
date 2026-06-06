@@ -18,7 +18,7 @@ function registerUser() {
 
   localStorage.setItem("currentUser", JSON.stringify(user));
 
-  fetch("http://localhost:5000/api/users/add", {
+  fetch("https://smart-internship-management-portal.onrender.com/api/users/add", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(user)
@@ -80,7 +80,7 @@ function submitReport() {
   return;
 }
 
-  fetch("http://localhost:5000/api/reports/add", {
+  fetch("https://smart-internship-management-portal.onrender.com/api/reports/add", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(report)
@@ -100,7 +100,7 @@ function markAttendance() {
     status: document.getElementById("attendanceStatus").value
   };
 
-  fetch("http://localhost:5000/api/attendance/mark", {
+  fetch("https://smart-internship-management-portal.onrender.com/api/attendance/mark", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(attendance)
@@ -126,7 +126,7 @@ function addFeedback() {
   return;
 }
 
-  fetch("http://localhost:5000/api/feedback/add", {
+  fetch("https://smart-internship-management-portal.onrender.com/api/feedback/add", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(feedback)
@@ -139,7 +139,7 @@ function addFeedback() {
 }
 
 function loadStats() {
-  fetch("http://localhost:5000/api/stats")
+  fetch("https://smart-internship-management-portal.onrender.com/api/stats")
   .then(res => res.json())
   .then(data => {
     document.getElementById("totalUsers").innerText = data.totalUsers;
@@ -150,7 +150,7 @@ function loadStats() {
 }
 
 function loadReports() {
-  fetch("http://localhost:5000/api/reports")
+  fetch("https://smart-internship-management-portal.onrender.com/api/reports")
   .then(res => res.json())
   .then(data => {
     const list = document.getElementById("reportsList");
