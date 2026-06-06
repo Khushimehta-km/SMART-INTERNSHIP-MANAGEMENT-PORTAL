@@ -25,12 +25,18 @@ app.get("/", (req, res) => {
 
 app.get("/api/stats", async (req, res) => {
     try {
+        const User = require("./models/User");
+        const Report = require("./models/Report");
+        const Attendance = require("./models/Attendance");
+        const Feedback = require("./models/Feedback");
+
         res.json({
-            users: 0,
-            reports: 0,
-            attendance: 0,
-            feedback: 0
+            totalUsers: await User.countDocuments(),
+            totalReports: await Report.countDocuments(),
+            totalAttendance: await Attendance.countDocuments(),
+            totalFeedback: await Feedback.countDocuments()
         });
+
     } catch (error) {
         res.status(500).json({
             message: error.message
