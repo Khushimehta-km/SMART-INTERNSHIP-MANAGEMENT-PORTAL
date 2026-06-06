@@ -46,7 +46,7 @@ app.use("/api/feedback", feedbackRoutes);
 
 
 // MongoDB connection
-mongoose.connect("mongodb+srv://khushim1626_db_user:VijayRenu@cluster0.tlzazh5.mongodb.net/?appName=Cluster0")
+mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     console.log("MongoDB Connected Successfully");
 })
